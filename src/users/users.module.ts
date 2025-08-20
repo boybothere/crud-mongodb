@@ -17,7 +17,8 @@ import { UserSettings, UserSettingsSchema } from 'src/schemas/UserSettings.schem
     },
     ])],
     providers: [UsersService],
-    controllers: [UsersController]
+    controllers: [UsersController],
+    exports: [UsersService]
 })
 export class UsersModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {

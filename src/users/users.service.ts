@@ -29,11 +29,11 @@ export class UsersService {
     }
 
     getAllUsers() {
-        return this.userModel.find().populate('settings')
+        return this.userModel.find().populate(['settings', 'posts'])
     }
 
     async getUserById(id: string) {
-        const user = await this.userModel.findById(id).populate('settings')
+        const user = await this.userModel.findById(id).populate(['settings', 'posts'])
         if (!user) throw new NotFoundException('User not found!')
         return user
     }
