@@ -1,15 +1,21 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, userSchema } from 'src/schemas/User.schema';
+import { User, UserSchema } from 'src/schemas/User.schema';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { ValidateObjectMiddleware } from 'src/common/middleware/Validate-Object-Id.middleware';
+import { UserSettings, UserSettingsSchema } from 'src/schemas/UserSettings.schema';
 
 @Module({
     imports: [MongooseModule.forFeature([{
         name: User.name,
-        schema: userSchema
-    }])],
+        schema: UserSchema
+    },
+    {
+        name: UserSettings.name,
+        schema: UserSettingsSchema
+    },
+    ])],
     providers: [UsersService],
     controllers: [UsersController]
 })
