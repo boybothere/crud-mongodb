@@ -16,9 +16,18 @@ import { ValidateObjectMiddleware } from 'src/common/middleware/Validate-Object-
 export class UsersModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         consumer.apply(ValidateObjectMiddleware)
-            .forRoutes({
-                path: 'users/:id',
-                method: RequestMethod.GET
-            })
+            .forRoutes(
+                {
+                    path: 'users/:id',
+                    method: RequestMethod.GET
+                },
+                {
+                    path: 'users/:id',
+                    method: RequestMethod.PATCH
+                },
+                {
+                    path: 'users/:id',
+                    method: RequestMethod.DELETE
+                })
     }
 }

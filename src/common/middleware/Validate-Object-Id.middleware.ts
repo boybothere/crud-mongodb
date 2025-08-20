@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 export class ValidateObjectMiddleware implements NestMiddleware {
     use(req: any, res: any, next: (error?: any) => void) {
         const isValid = mongoose.Types.ObjectId.isValid(req.params.id)
-        if (!isValid) throw new HttpException('User not found', 404)
+        if (!isValid) throw new HttpException('Invalid ID', 400)
         next()
     }
 
